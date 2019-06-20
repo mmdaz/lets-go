@@ -2,6 +2,7 @@ package server
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -12,11 +13,16 @@ import (
 	_ "github.com/lib/pq"
 )
 
+type URL struct {
+	BaseUrl string `json:"baseUrl,omitempty"`
+	NewUrl  string `json:"newUrl,omitempty"`
+}
+
 func HandleRequests() {
 	myRouter := mux.NewRouter().StrictSlash(true)
 	db.InitDB()
 	myRouter.HandleFunc("/", homePage)
-	myRouter.HandleFunc("/getURL/{baseURL}/{newURL}", getURL)
+	myRouter.HandleFunc("/getURL", getURL)
 	myRouter.HandleFunc("/re/{newURL}", redirectURL)
 
 	log.Fatal(http.ListenAndServe(":10000", myRouter))
@@ -28,16 +34,15 @@ func homePage(w http.ResponseWriter, request *http.Request) {
 }
 
 func getURL(w http.ResponseWriter, request *http.Request) {
-	vars := mux.Vars(request)
-	baseURL := vars["baseURL"]
-	newURL := vars["newURL"]
-	insertToDb(baseURL, newURL)
+	var url URL
+	_ = json.NewDecoder(request.Body).Decode(&url)
+	insertToDb(url)
 	fmt.Fprintf(w, "Welcome to the GetUrlPage!")
 }
 
-func insertToDb(baseURL string, newURL string) {
+func insertToDb(url URL) {
 	var id int
-	err := db.ConnectionPool.QueryRow(`INSERT INTO urls(base_url, new_url) VALUES($1, $2) RETURNING id;`, baseURL, newURL).Scan(&id)
+	err := db.ConnectionPool.QueryRow(`INSERT INTO urls(base_url, new_url) VALUES($1, $2) RETURNING id;`, url.BaseUrl, url.NewUrl).Scan(&id)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -46,9 +51,8 @@ func insertToDb(baseURL string, newURL string) {
 func redirectURL(w http.ResponseWriter, request *http.Request) {
 	vars := mux.Vars(request)
 	newURL := vars["newURL"]
-	sqlStatement := `SELECT base FROM urls WHERE new_urls=$1;`
+	sqlStatement := `SELECT base_url FROM urls WHERE new_url=$1;`
 	var baseURL string
-	// rows, err := db.Query(`SELECT * FROM urls WHERE new_url = $1`, newURL)
 	row := db.ConnectionPool.QueryRow(sqlStatement, newURL)
 	err := row.Scan(&baseURL)
 	if err != nil {

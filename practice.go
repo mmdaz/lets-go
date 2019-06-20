@@ -1,12 +1,12 @@
 package main
 
 import (
+	"awesomeProject/db"
 	"database/sql"
 	"fmt"
-	"awesomeProject/db"
+
 	_ "github.com/lib/pq"
 )
-
 
 type URL struct {
 	ID      int
@@ -17,9 +17,9 @@ type URL struct {
 func main() {
 	db.InitDB()
 	db := db.ConnectionPool
-	sqlStatement := `SELECT * FROM urls;`
+	sqlStatement := `SELECT * FROM urls WHERE new_url=$1;`
 	var url URL
-	row := db.QueryRow(sqlStatement)
+	row := db.QueryRow(sqlStatement, "qwer")
 	err := row.Scan(&url.ID, &url.BaseUrl, &url.NewUrl)
 	switch err {
 	case sql.ErrNoRows:
