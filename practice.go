@@ -1,0 +1,33 @@
+package main
+
+import (
+	"database/sql"
+	"fmt"
+	"awesomeProject/db"
+	_ "github.com/lib/pq"
+)
+
+
+type URL struct {
+	ID      int
+	BaseUrl string
+	NewUrl  string
+}
+
+func main() {
+	db.InitDB()
+	db := db.ConnectionPool
+	sqlStatement := `SELECT * FROM urls;`
+	var url URL
+	row := db.QueryRow(sqlStatement)
+	err := row.Scan(&url.ID, &url.BaseUrl, &url.NewUrl)
+	switch err {
+	case sql.ErrNoRows:
+		fmt.Println("No rows were returned!")
+		return
+	case nil:
+		fmt.Println(url)
+	default:
+		panic(err)
+	}
+}
