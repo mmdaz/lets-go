@@ -8,7 +8,7 @@ import (
 var ConnectionPool *sql.DB
 
 func InitDB() {
-	connStr := "postgres://muhammad:1540487768@localhost/url_db"
+	connStr := "postgres://DBNAME:PASSWORD@localhost/url_db"
 	var err error
 	ConnectionPool, err = sql.Open("postgres", connStr)
 	if err != nil {
