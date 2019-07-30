@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"awesomeProject/db"
+	"awesomeProject/url_redirector/db"
 
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"

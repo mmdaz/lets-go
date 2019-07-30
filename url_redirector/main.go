@@ -1,6 +1,6 @@
 package main
 
-import "awesomeProject/server"
+import "awesomeProject/url_redirector/server"
 
 func main() {
 	server.HandleRequests()
