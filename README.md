@@ -1,3 +1,6 @@
 # I am learning Golang :)
 
-This is a simple url redirector project.
+
+It's my golang learning projects.
+
+- (url redirector)[https://github.com/mmdaz/lets-go/tree/master/url_redirector]
