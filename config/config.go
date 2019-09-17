@@ -12,10 +12,6 @@ import (
 var Conf ConfYaml
 
 var defaultConf = []byte(`
-	core:
-	 mode: "release" # release, debug, test
-	 user_work_pool_size: 1000
-	 group_work_pool_size: 100
 	postgres:
 	 host: ""
 	 port: 5432
@@ -23,34 +19,8 @@ var defaultConf = []byte(`
 	 user: ""
 	 pass: ""
 	 batch_count: 5
-	kafka:
-	 bootstrap_servers: ""
-	 group_id: "random"
-	 auto_offset_reset: "earliest"
-	 topic: "goshak"
-	firebase:
-	 url: "http://fcm.googleapis.com/fcm/send"
-	 token: ""
-	 timeout: 10s
-	 max_connection: 10000
-	 work_pool_size: 10000
-	apple:
-	 enable: false
-	 key: 456367
-	 bundle_id: "ai.nasim.bale"
-	 path: "/home/amsjavan/PushCertificate.p12"
-	 password: "Elenoon@91"
-	prometheus:
-	 port: 8080
 	log:
 	 level: debug
-	endpoints:
-	 grpc:
-	   address: "127.0.0.1:5050"
-	 http:
-	   address: ":4040"
-	   user: "test"
-	   pass: "test"
 `)
 
 type ConfYaml struct {
@@ -79,7 +49,7 @@ func LoadConf(confPath string) (ConfYaml, error) {
 
 	viper.SetConfigType("yaml")
 	viper.AutomaticEnv()         // read in environment variables that match
-	viper.SetEnvPrefix("goshak") // will be uppercased automatically
+	viper.SetEnvPrefix("goshak") // will be upper_cased automatically
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	if confPath != "" {
