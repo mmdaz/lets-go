@@ -1,11 +1,11 @@
-package main
+package panic_recover
 
 import (
 	"errors"
 	"fmt"
 )
 
-func main() {
+func PanicRecover() {
 	defer func() {
 		if err := recover(); err != nil {
 			fmt.Printf("Trapped panic: %s (%T)\n", err, err)

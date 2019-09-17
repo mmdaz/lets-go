@@ -1,4 +1,4 @@
-package main
+package lets_go
 
 import (
 	"fmt"

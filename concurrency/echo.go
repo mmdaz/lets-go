@@ -1,4 +1,4 @@
-package main
+package concurrency
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func main() {
+func StartEcho() {
 	go echo(os.Stdin, os.Stdout)
 	go echo(os.Stdin, os.Stdout)
 	time.Sleep(30 * time.Second)
@@ -16,5 +16,5 @@ func main() {
 }
 
 func echo(in io.Reader, out io.Writer) {
-	io.Copy(out, in)
+	_, _ = io.Copy(out, in)
 }

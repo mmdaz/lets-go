@@ -1,11 +1,11 @@
-package main
+package concurrency
 
 import (
 	"fmt"
 	"runtime"
 )
 
-func main() {
+func schedule() {
 
 	fmt.Println("Outside a goroutine.")
 	go func() {
