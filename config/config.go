@@ -49,7 +49,7 @@ func LoadConf(confPath string) (ConfYaml, error) {
 
 	viper.SetConfigType("yaml")
 	viper.AutomaticEnv()         // read in environment variables that match
-	viper.SetEnvPrefix("goshak") // will be upper_cased automatically
+	viper.SetEnvPrefix("my_test_project") // will be upper_cased automatically
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	if confPath != "" {

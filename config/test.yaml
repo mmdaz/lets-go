@@ -1,0 +1,9 @@
+postgres:
+  host: "127.0.0.1"
+  port: 5432
+  db: "nasim"
+  user: "nasim"
+  pass: "nasim"
+  batch_count: 5
+log:
+  level: debug
