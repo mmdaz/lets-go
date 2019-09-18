@@ -1,7 +1,7 @@
 package main
 
 import (
-	"awesomeProject/db"
+	"lets_go/db"
 	"log"
 	"os"
 	"testing"
