@@ -8,14 +8,15 @@ import (
 	"os"
 )
 
-var Logger *logrus.Logger
-
-func Initialize(level string) {
-	var err error
-	Logger, err = stdoutInit(level)
+type Logger struct {
+	*logrus.Logger
+}
+func NewLog(level string) *Logger {
+	l, err := stdoutInit(level)
 	if err != nil {
 		log.Panic(err)
 	}
+	return &Logger{l}
 }
 
 func stdoutInit(lvl string) (*logrus.Logger, error) {
