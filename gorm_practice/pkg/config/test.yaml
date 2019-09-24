@@ -1,9 +1,9 @@
 postgres:
   host: "127.0.0.1"
   port: 5432
-  db: "test"
-  user: "test"
-  pass: "test"
+  db: "go_learn"
+  user: "postgres"
+  pass: "123456"
   batch_count: 5
 log:
   level: debug

@@ -65,10 +65,8 @@ func LoadConf(confPath string) (ConfYaml, error) {
 		}
 	} else {
 		// Search config in home directory with name ".pkg" (without extension).
-		viper.AddConfigPath("/etc/goshak/")
-		viper.AddConfigPath("$HOME/.goshak")
+		viper.AddConfigPath("config")
 		viper.AddConfigPath(".")
-		viper.SetConfigName("config")
 
 		// If a config file is found, read it in.
 		if err := viper.ReadInConfig(); err == nil {
