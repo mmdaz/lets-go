@@ -1,13 +1,11 @@
 package main
 
 import (
-	"lets_go/config"
-	"lets_go/log"
+	"lets_go/gorm_practice/cmd"
+	"lets_go/gorm_practice/pkg/log"
 )
 
 func main() {
-	config.Initialize("config/test.yaml")
-	log.Initialize(config.Conf.Log.Level)
+	cmd.Main()
 	log.Logger.Info("main started...")
-
 }
