@@ -14,7 +14,7 @@ var Conf ConfYaml
 var defaultConf = []byte(`
 	postgres:
 	 host: ""
-	 port: 5432
+	 port: 
 	 db: ""
 	 user: ""
 	 pass: ""
