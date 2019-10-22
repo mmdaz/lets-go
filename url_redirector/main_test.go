@@ -1,7 +1,7 @@
 package main
 
 import (
-	"lets_go/db"
+	"lets_go/url_redirector/db"
 	"log"
 	"os"
 	"testing"
