@@ -8,15 +8,32 @@ import (
 	"os"
 )
 
-type Logger struct {
+var Logger = defaultLogger()
+
+type Log struct {
 	*logrus.Logger
 }
-func NewLog(level string) *Logger {
+
+func NewLog(level string) *Log {
 	l, err := stdoutInit(level)
 	if err != nil {
 		log.Panic(err)
 	}
-	return &Logger{l}
+	return &Log{l}
+}
+
+func (l *Log) SetLevel(lvl string) error {
+	level, err := logrus.ParseLevel(lvl)
+	if err != nil {
+		err = errors.New("failed to parse level")
+		return err
+	}
+	l.Logger.Level = level
+	return nil
+}
+
+func defaultLogger() *Log {
+	return NewLog("DEBUG")
 }
 
 func stdoutInit(lvl string) (*logrus.Logger, error) {
