@@ -7,10 +7,10 @@ import (
 )
 
 type UserRepo struct {
-	log      *log.Logger
+	log      *log.Log
 	Database *postgres.Database
 }
 
-func (p UserRepo) Create(user *model.User) {
+func (p UserRepo) Add(user *model.User) {
 	// TODO I am so confusing :))))
 }

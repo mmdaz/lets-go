@@ -2,6 +2,7 @@ package server
 
 
 import (
+	"fmt"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"lets_go/gorm_practice/pkg/log"
@@ -32,6 +33,10 @@ func (s *Server) start() {
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE},
 	}))
+	e.POST("/add_user", func(context echo.Context) error {
+		fmt.Print(context)
+		return echo.ErrBadRequest
+	})
 	log.Logger.Info(e.Start(":1323"))
 	s.isReady <- true
 }
