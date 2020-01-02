@@ -10,5 +10,6 @@ require (
 	github.com/lib/pq v1.2.0
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/viper v1.4.0
+	github.com/valyala/fasthttp v1.7.1
 	github.com/valyala/fasttemplate v1.1.0 // indirect
 )
