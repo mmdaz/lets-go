@@ -3,6 +3,7 @@ module lets_go
 go 1.13
 
 require (
+	github.com/confluentinc/confluent-kafka-go v1.3.0
 	github.com/gorilla/mux v1.7.3
 	github.com/jinzhu/gorm v1.9.11
 	github.com/labstack/echo v3.3.10+incompatible
@@ -12,4 +13,5 @@ require (
 	github.com/spf13/viper v1.4.0
 	github.com/valyala/fasthttp v1.7.1
 	github.com/valyala/fasttemplate v1.1.0 // indirect
+	golang.org/x/crypto v0.0.0-20190506204251-e1dfcc566284 // indirect
 )
