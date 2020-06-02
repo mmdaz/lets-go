@@ -23,16 +23,16 @@ func PracticeWaitGroups(users []int, finished chan bool) {
 		tokensWg.Add(n)
 
 		for i := 0; i < n; i++ {
-			go func(tokensChan chan []string, tokensWg sync.WaitGroup) {
+			go func(tokensChan chan []string, tokensWg *sync.WaitGroup) {
 				for tokens := range tokensChan {
 					fmt.Println("Sending to firebase", tokens)
 				}
 				tokensWg.Done()
-			}(tokensChan, tokensWg)
+			}(tokensChan, &tokensWg)
 		}
 
 		for i := 0; i < n; i++ {
-			go func(usersChan chan int, tokensChan chan []string, wg sync.WaitGroup) {
+			go func(usersChan chan int, tokensChan chan []string, wg *sync.WaitGroup) {
 				for u := range usersChan {
 					start := time.Now()
 					fmt.Print("u in userChan: ", u)
@@ -45,7 +45,7 @@ func PracticeWaitGroups(users []int, finished chan bool) {
 					tokensChan <- firebaseTokens
 				}
 				wg.Done()
-			}(usersChan, tokensChan, wg)
+			}(usersChan, tokensChan, &wg)
 		}
 
 		for _, u := range users {
