@@ -1,7 +1,8 @@
 package main
 
 import (
-	c "lets_go/concurrency_practice"
+	"lets_go/concurrency_practice"
+	"lets_go/interface_practice"
 )
 
 func main() {
@@ -13,9 +14,13 @@ func main() {
 
 	var users []int
 	finished := make(chan bool)
-	for index := 0; index < 80; index++ {
+	for index := 0; index < 50000; index++ {
 		users = append(users, index)
 	}
-	c.PracticeWaitGroups(users, finished)
-	<- finished
+
+	interPractice := interface_practice.NewInterfacePractice()
+	waitGroupPractice := concurrency_practice.NewWaitGroupPractice(interPractice)
+	waitGroupPractice.RunPracticeWaitGroups(users, finished)
+
+	<-finished
 }
