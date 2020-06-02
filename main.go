@@ -1,16 +1,21 @@
 package main
 
 import (
-	"lets_go/learn_kafka"
+	c "lets_go/concurrency_practice"
 )
 
 func main() {
 	//cmd.Main()
-	learn_kafka.StartReading()
+	// learn_kafka.StartReading()
 	// learn_kafka.Produce()
 	//fast_http_example.StartServer()
 	//log.Logger.Info("main started...")
-	//signals := make(chan os.Signal, 1)
-	//signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM)
-	//<-signals
+
+	var users []int
+	finished := make(chan bool)
+	for index := 0; index < 80; index++ {
+		users = append(users, index)
+	}
+	c.PracticeWaitGroups(users, finished)
+	<- finished
 }
