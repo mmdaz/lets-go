@@ -11,6 +11,9 @@ func main() {
 	// learn_kafka.Produce()
 	//fast_http_example.StartServer()
 	//log.Logger.Info("main started...")
+	interPractice := interface_practice.NewInterfacePractice()
+	waitGroupPractice := concurrency_practice.NewWaitGroupPractice(interPractice)
+
 
 	var users []int
 	finished := make(chan bool)
@@ -18,9 +21,20 @@ func main() {
 		users = append(users, index)
 	}
 
-	interPractice := interface_practice.NewInterfacePractice()
-	waitGroupPractice := concurrency_practice.NewWaitGroupPractice(interPractice)
-	waitGroupPractice.RunPracticeWaitGroups(users, finished)
+	var divided [][]int
+	for i := 0; i < len(users); i += 80 {
+		end := i + 80
+		if end > len(users) {
+			end = len(users)
+		}
+		divided = append(divided, users[i:end])
+	}
+
+	for _, chunkedUsers := range divided {
+		waitGroupPractice.RunPracticeWaitGroups(chunkedUsers, finished)
+	}
+
+
 
 	<-finished
 }
