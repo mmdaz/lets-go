@@ -9,7 +9,3 @@ func main() {
 		workerPool.SomeWork()
 	}
 }
-
-
-
-

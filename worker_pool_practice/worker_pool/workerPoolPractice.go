@@ -2,16 +2,23 @@ package worker_pool
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
 type WorkerPoolPractice struct {
-	jobs	chan int
-	results	chan int
+	jobs	chan waitStruct
+}
+
+type waitStruct struct {
+	wait *sync.WaitGroup
+	value int
 }
 
 func NewWorkerPoolPractice() *WorkerPoolPractice{
-	return &WorkerPoolPractice{}
+	return &WorkerPoolPractice{
+		jobs: make(chan waitStruct),
+	}
 }
 
 
@@ -26,21 +33,19 @@ func (w *WorkerPoolPractice) worker() {
 		fmt.Println("started  job", j)
 		time.Sleep(time.Second)
 		fmt.Println("finished job", j)
-		w.results <- j * 2
+		j.wait.Done()
 	}
 }
 
 
 func (w *WorkerPoolPractice) SomeWork(){
-	numJobs := 10
-	w.jobs = make(chan int, numJobs)
-	w.results = make(chan int, numJobs)
-
-	for j := 1; j < numJobs; j++ {
-		w.jobs <- j
-	}
-
-	for a := 1; a < numJobs; a++ {
-		fmt.Println(<-w.results)
-	}
+	numJobs := 200
+	var wait sync.WaitGroup
+	wait.Add(numJobs)
+	go func() {
+		for j := 0; j < numJobs; j++ {
+			w.jobs <- waitStruct{wait: &wait, value:j}
+		}
+	}()
+	wait.Wait()
 }
