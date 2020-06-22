@@ -2,16 +2,16 @@ package concurrency_practice
 
 import (
 	"fmt"
-	"lets_go/interface_practice"
+	"lets_go/interface_practice/modules"
 	"sync"
 	"time"
 )
 
 type PracticeWaitGroups struct {
-	interfacePractice interface_practice.InterfacePractice
+	interfacePractice modules.MainModule
 }
 
-func NewWaitGroupPractice(interfacePractice interface_practice.InterfacePractice) *PracticeWaitGroups {
+func NewWaitGroupPractice(interfacePractice modules.MainModule) *PracticeWaitGroups {
 	return &PracticeWaitGroups{interfacePractice: interfacePractice}
 }
 
@@ -46,7 +46,7 @@ func (p *PracticeWaitGroups) RunPracticeWaitGroups(users []int, finished chan bo
 					start := time.Now()
 					fmt.Print("u in userChan: ", u)
 					firebaseApples := []string{"sdfsdfdfs", "fdsfsdfsdf", "fdsfsdfsdf"}
-					p.interfacePractice.RunInterfacePractice(i)
+					p.interfacePractice.RunMainModule(i)
 					fmt.Println("Get postgres auths took %s", time.Since(start))
 					var firebaseTokens []string
 					for _, firebase := range firebaseApples {

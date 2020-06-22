@@ -2,7 +2,7 @@ package main
 
 import (
 	"lets_go/concurrency_practice"
-	"lets_go/interface_practice"
+	"lets_go/interface_practice/modules"
 )
 
 func main() {
@@ -11,7 +11,7 @@ func main() {
 	// learn_kafka.Produce()
 	//fast_http_example.StartServer()
 	//log.Logger.Info("main started...")
-	interPractice := interface_practice.NewInterfacePractice()
+	interPractice := modules.NewMainModule()
 	waitGroupPractice := concurrency_practice.NewWaitGroupPractice(interPractice)
 
 
