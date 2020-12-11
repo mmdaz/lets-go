@@ -21,6 +21,3 @@ func (d *mockMainModule) RunMainModule(index int) {
 	d.RunFunc(index)
 }
 
-func (d *mockMainModule) innerFunction() {
-	panic("implement me!")
-}

@@ -1,3 +1,5 @@
+# github.com/confluentinc/confluent-kafka-go v1.3.0
+github.com/confluentinc/confluent-kafka-go/kafka
 # github.com/dgrijalva/jwt-go v3.2.0+incompatible
 github.com/dgrijalva/jwt-go
 # github.com/fsnotify/fsnotify v1.4.7
@@ -43,6 +45,7 @@ github.com/lib/pq/oid
 github.com/lib/pq/scram
 # github.com/magiconair/properties v1.8.0
 github.com/magiconair/properties
+github.com/magiconair/properties/assert
 # github.com/mattn/go-colorable v0.1.2
 github.com/mattn/go-colorable
 # github.com/mattn/go-isatty v0.0.9
@@ -72,13 +75,17 @@ github.com/valyala/fasthttp/fasthttputil
 github.com/valyala/fasthttp/stackless
 # github.com/valyala/fasttemplate v1.1.0
 github.com/valyala/fasttemplate
-# golang.org/x/crypto v0.0.0-20190325154230-a5d413f7728c
+# golang.org/x/crypto v0.0.0-20190506204251-e1dfcc566284
 golang.org/x/crypto/acme
 golang.org/x/crypto/acme/autocert
+# golang.org/x/net v0.0.0-20190827160401-ba9fcec4b297
+golang.org/x/net/idna
 # golang.org/x/sys v0.0.0-20190813064441-fde4db37ae7a
 golang.org/x/sys/unix
 # golang.org/x/text v0.3.1-0.20180807135948-17ff2d5776d2
+golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
+golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
 # gopkg.in/yaml.v2 v2.2.2
 gopkg.in/yaml.v2

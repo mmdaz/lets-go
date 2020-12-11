@@ -4,7 +4,6 @@ import "fmt"
 
 type MainModule interface {
 	RunMainModule(index int)
-	innerFunction()
 }
 
 type MainModuleImp struct {
