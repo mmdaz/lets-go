@@ -12,7 +12,6 @@ require (
 	github.com/magiconair/properties v1.8.0
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/viper v1.4.0
-	github.com/valyala/fasthttp v1.7.1
+	github.com/valyala/fasthttp v1.34.0
 	github.com/valyala/fasttemplate v1.1.0 // indirect
-	golang.org/x/crypto v0.0.0-20190506204251-e1dfcc566284 // indirect
 )
